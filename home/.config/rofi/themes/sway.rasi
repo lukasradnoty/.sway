@@ -1,14 +1,14 @@
 * {
     font: "Ubuntu 11";
 
-    fg0: #383a42; // fg
-    fg1: #e6e6e6;
-    fg2: #dcdcdc;
+    fg0: #abb2bf; // fg
+    fg1: #393f4a;
+    fg2: #3b3f4c;
 
-    bg0: #fafafa;
-    bg1: #f0f0f0;
-    bg2: #e6e6e6;
-    bg4: #101012;
+    bg0: #282c34;
+    bg1: #31353f;
+    bg2: #393f4a;
+    bg4: #21252b;
 
 
     background-color: transparent;

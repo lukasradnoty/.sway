@@ -3,11 +3,12 @@
 font=Ubuntu, sans-serif 11
 
 # Colors support alpha.
-background-color=#dcdcdc
-text-color=#383a42
-progress-color=over #fafafa
 
-border-color=#dcdcdc
+background-color=#282c34
+text-color=#abb2bf
+progress-color=over #abb2bf
+
+border-color=#282c34
 border-radius=14
 border-size=1
 

@@ -16,20 +16,20 @@ set $term foot
 set $mod Mod4
 
 # Original colors from https://github.com/navarasu/onedark.nvim/blob/master/lua/onedark/palette.lua
-set $black #101012
+set $black #181a1f
 
-set $bg0 #fafafa
-set $bg1 #f0f0f0
-set $bg2 #e6e6e6
-set $bg3 #dcdcdc
-set $bg_d #c9c9c9
-set $bg_blue #68aee8
-set $bg_yellow #e2c792
+set $bg0 #282c34
+set $bg1 #31353f
+set $bg2 #393f4a
+set $bg3 #3b3f4c
+set $bg_d #21252b
+set $bg_blue #73b8f1
+set $bg_yellow #ebd09c
 
-set $fg #383a42
+set $fg #abb2bf
 
-set $grey #a0a1a7
-set $light_grey #818387
+set $grey #5c6370
+set $light_grey #848b98
 
 # Aliases added for semantics
 set $fg0 $fg
