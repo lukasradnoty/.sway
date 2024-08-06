@@ -1,0 +1,11 @@
+configuration {
+    modes: "filebrowser";
+    show-icons: true;
+    icon-theme: "Pop";
+    filebrowser {
+        directories-first: true;
+        sorting-method: "name";
+    }
+}
+
+@import "base"

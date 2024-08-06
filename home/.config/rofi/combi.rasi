@@ -1,0 +1,31 @@
+configuration {
+    modes: "combi";
+    combi-modes: "window,drun";
+    show-icons: true;
+    icon-theme: "Pop";
+
+/*	combi-display-format: "{mode} {text}";*/
+
+/*  Mode prefix for combi (additional string/icon) */
+/*  combi-hide-mode-prefix: false; */
+	display-window: "";
+	display-drun: "";
+/*	display-run: ">"; */
+/*	display-ssh: ;*/
+/*	display-combi: ;*/
+/*	display-keys: ;*/
+/*	display-filebrowser: ;*/
+/*	display-emoji: ;*/
+
+    // Dekstop entry actions
+	drun-show-actions: true;
+/*	drun-match-fields: "name,generic,exec,categories,keywords";*/
+/*	drun-categories: ;*/
+/*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
+/*	drun-url-launcher: "xdg-open";*/
+
+	run-shell-command: "{terminal} {cmd}";
+/*	run-list-command: "";*/
+}
+
+@import "base"

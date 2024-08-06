@@ -1,0 +1,49 @@
+configuration {
+	terminal: "foot";
+	steal-focus: true;
+
+/*	application-fallback-icon: ;*/
+
+	/* These probably doesn't work because of wayland
+     window-thumbnail: true;
+	hover-select: false;
+    */
+
+
+/*	run-command: "{cmd}"; */
+/*	fixed-num-lines: true;*/
+/*	ssh-client: "ssh";*/
+/*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
+/*	disable-history: false;*/
+/*	ignored-prefixes: "";*/
+/*	sort: false;*/
+/*	sorting-method: "normal";*/
+/*	case-sensitive: false;*/
+/*	cycle: true;*/
+/*	sidebar-mode: false;*/
+/*	eh: 1;*/
+/*	parse-hosts: false;*/
+/*	parse-known-hosts: true;*/
+/*	combi-modes: "window,run";*/
+/*	matching: "normal";*/
+/*	tokenize: true;*/
+/*	m: "-5";*/
+/*	filter: ;*/
+/*	dpi: -1;*/
+/*	threads: 0;*/
+/*	scroll-method: 0;*/
+/*	window-format: "{w}    {c}   {t}";*/
+/*	click-to-exit: true;*/
+/*	max-history-size: 25;*/
+/*	matching-negate-char: '-' /* unsupported */;*/
+/*	cache-dir: ;*/
+/*	drun-use-desktop-cache: false;*/
+/*	drun-reload-desktop-cache: false;*/
+/*	normalize-match: false;*/
+/*	refilter-timeout-limit: 300;*/
+/*	pid: "/run/user/1000/rofi.pid";*/
+/*	xserver-i300-workaround: false;*/
+}
+
+@import "keybindings"
+@theme "sway.rasi"

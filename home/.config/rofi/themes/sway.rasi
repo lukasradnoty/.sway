@@ -1,0 +1,94 @@
+* {
+    font: "Ubuntu 11";
+
+    fg0: #383a42; // fg
+    fg1: #e6e6e6;
+    fg2: #dcdcdc;
+
+    bg0: #fafafa;
+    bg1: #f0f0f0;
+    bg2: #e6e6e6;
+    bg4: #101012;
+
+
+    background-color: transparent;
+    text-color: @fg0;
+
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    background-color: @bg0;
+    location: center;
+    width: 720px;
+    border-radius: 8;
+    border: 1px;
+    border-color: @bg2;
+}
+
+inputbar {
+    padding: 12px;
+    spacing: 12px;
+    children: [ icon-search, entry ];
+}
+
+icon-search {
+    expand: false;
+}
+
+icon-search, entry, element-icon, element-text {
+    vertical-align: 0.5;
+}
+
+entry {
+    placeholder: "...";
+    placeholder-color: @fg2;
+}
+
+message {
+    border: 1px 0 0;
+    border-color: @bg2;
+    background-color: @bg2;
+}
+
+textbox {
+    padding: 10px 20px;
+}
+
+listview {
+    lines: 7;
+    columns: 1;
+
+    fixed-height: false;
+    border: 1px 0 0;
+    border-color: @bg2;
+}
+
+element {
+    padding: 12px; 
+    spacing: 8px;
+    background-color:   transparent;
+}
+
+element normal active {
+    text-color: @bg2;
+}
+
+element alternate active {
+    text-color: @bg2;
+}
+
+element selected normal, element selected active {
+    background-color: @bg4;
+    text-color: @fg1;
+}
+
+element-icon {
+    size: 1em;
+}
+
+element-text {
+    text-color: inherit;
+}

@@ -1,0 +1,12 @@
+configuration {
+    modes: "window";
+    show-icons: true;
+    icon-theme: "Pop";
+
+    display-window: "";
+
+    // When one entry is left, automatically select it.
+	auto-select: true;
+}
+
+@import "base"
