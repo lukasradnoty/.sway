@@ -1,0 +1,61 @@
+# This config file execution directory doesn't follow symlinks, so the working directory is:
+#  ~/.config/sway/
+
+# To get key name: `$ xev | sed -ne '/^KeyPress/,/^$/p'` (https://askubuntu.com/a/466660)
+
+# This config can't handle comments on the same line
+# as the config commands, put them above or bellow
+
+# Never leave spaces after \ when escaping newlines in commands.
+
+# https://www.reddit.com/r/swaywm/comments/kr2b42/use_variable_in_swaymsg/
+
+set $term foot
+
+# win/super = Mod4, alt = Mod1
+set $mod Mod4
+
+# Original colors from https://github.com/navarasu/onedark.nvim/blob/master/lua/onedark/palette.lua
+set $black #101012
+
+set $bg0 #fafafa
+set $bg1 #f0f0f0
+set $bg2 #e6e6e6
+set $bg3 #dcdcdc
+set $bg_d #c9c9c9
+set $bg_blue #68aee8
+set $bg_yellow #e2c792
+
+set $fg #383a42
+
+set $grey #a0a1a7
+set $light_grey #818387
+
+# Aliases added for semantics
+set $fg0 $fg
+set $fg1 $bg2
+set $fg2 $bg3
+set $bg4 $black
+set $accent0 $bg_yellow
+set $accent1 $bg_blue
+set $grey0 $grey
+set $grey1 $light_grey
+set $grey2 $bg_d
+
+set $transparent #ffffff00
+set $shaddow #00000018
+
+set $font_family Ubuntu, sans-serif
+# Pango font syntax:
+# font pango: <fontfamilyname>, <fallback>, <fallback> <style> <weight> <size>
+
+set $gutter 20
+set $radius 14
+
+# Some startup defaults
+exec_always pamixer --default-source --set-volume 0 --mute
+exec_always pamixer --set-volume 0 --mute 
+exec_always light -S 90
+
+include ~/.config/sway/config.d/*
+include /etc/sway/config.d/*

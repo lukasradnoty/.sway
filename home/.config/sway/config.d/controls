@@ -1,0 +1,43 @@
+set $controls_dir ~/.local/share/sway/controls
+
+# System
+bindsym --locked $mod+control+p        exec $controls_dir/sway poweroff
+bindsym --locked $mod+control+o        exec $controls_dir/sway reboot
+bindsym --locked $mod+control+h        exec $controls_dir/sway hibernate
+bindsym --locked $mod+control+u        exec $controls_dir/sway sleep
+bindsym --locked XF86PowerOff          exec $controls_dir/sway sleep
+bindsym --locked $mod+control+i        exec swaymsg exit
+bindsym control+alt+q                  exec $controls_dir/sway lock
+bindswitch --reload --locked lid:on    exec $controls_dir/sway lock
+bindsym $mod+control+r                 exec $controls_dir/sway reload
+
+# Display brightness
+bindsym --locked XF86MonBrightnessDown exec $controls_dir/brightness down
+bindsym --locked XF86MonBrightnessUp   exec $controls_dir/brightness up
+
+# Media
+bindsym --locked XF86AudioPrev         exec $controls_dir/media previous
+bindsym --locked XF86AudioPlay         exec $controls_dir/media toggle
+bindsym --locked XF86AudioNext         exec $controls_dir/media next
+
+# Volume
+bindsym --locked XF86AudioLowerVolume  exec $controls_dir/volume down
+bindsym --locked XF86AudioRaiseVolume  exec $controls_dir/volume up
+bindsym --locked XF86AudioMute         exec $controls_dir/volume toggle
+
+# Wifi
+# This would trigger the exec command but also disable wifi at the same time,
+# and there's probably no easy way to stop that from happening.
+# bindsym XF86RFKill exec [...]
+
+# Screenshot
+bindsym Print                          exec $controls_dir/screenshot fullscreen
+bindsym Mod4+shift+s                   exec $controls_dir/screenshot area
+
+# Notifications
+bindsym $mod+Delete                    exec makoctl dismiss
+bindsym $mod+Shift+Delete              exec makoctl dismiss --all
+
+# Wob overlay progress bar piping
+exec_always mkfifo /tmp/wobpipe 2>/dev/null
+exec_always pkill wob; tail -f -n 1 /tmp/wobpipe 2>/dev/null | wob 

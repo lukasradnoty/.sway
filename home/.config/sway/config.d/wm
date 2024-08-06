@@ -1,0 +1,123 @@
+# https://www.reddit.com/r/swaywm/comments/q90v6l/comment/hgurmbj/
+for_window [title="(?:Open|Save) (?:File|Folder|As)"] floating enable, resize set width 1030 height 710
+
+# https://www.reddit.com/r/swaywm/comments/q90v6l/comment/hh3c4im/
+for_window [app_id="gnome-calculator"] floating enable
+
+# 
+for_window {
+    [window_role="pop-up"] floating enable
+    [window_role="bubble"] floating enable
+    [window_role="dialog"] floating enable
+    [window_type="dialog"] floating enable
+}
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+bindsym $mod+tab focus next
+bindsym $mod+shift+tab focus prev
+# bindsym --to-code $mod+grave focus next
+# bindsym --to-code $mod+shift+grave focus prev
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Up focus parent
+bindsym $mod+Down focus child
+
+focus_follows_mouse yes
+
+# focus window in the opposite direction if there's none in the desired direction
+focus_wrapping no
+
+# Drag window with $mod + left mouse button.
+# Resize window with $mod + right mouse button.
+# Despite the name, it works for tiling windows
+floating_modifier $mod
+
+bindsym --to-code $mod+minus move scratchpad
+bindsym --to-code $mod+equal scratchpad show ; floating toggle
+
+# grave = backtick = `
+# Swap focus between the tiling area and the floating area
+# bindsym $mod+Escape focus mode_toggle
+# Toggle the current windows from floating to tiling mode and vice versa
+bindsym --to-code $mod+Grave floating toggle
+
+# Swap/Move the focused window [by N px in floating mode]
+bindsym $mod+shift+h move left 5 px
+bindsym $mod+shift+j move down 5px
+bindsym $mod+shift+k move up 5px
+bindsym $mod+shift+l move right 5px
+# bindsym $mod+c move position center, resize set 50 ppt 100 ppt
+# make floating window sticky
+# bindsym $mod+s sticky enable
+
+# layout
+workspace_layout tabbed
+#default_orientation horizontal
+bindsym $mod+f fullscreen
+bindsym $mod+b split horizontal
+bindsym $mod+v split vertical
+bindsym $mod+s layout toggle tabbed split
+
+# resizing
+mode "resize" {
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $left resize shrink width 10px
+    bindsym --to-code $right resize grow width 10px
+
+    bindsym Shift+$down resize shrink height 10px
+    bindsym Shift+$up resize grow height 10px
+    bindsym Shift+$left resize grow width 10px
+    bindsym --to-code Shift+$right resize shrink width 10px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# Close focused window
+bindsym alt+q kill
+# ...with mouse right click
+bindsym button3 kill
+
+# Workspaces
+# PageUp is Next PageDown is Prior
+#
+# if you press a key for the same workspace twice
+# it will switch to the previous workspace
+workspace_auto_back_and_forth no
+# bindsym $mod+tab workspace back_and_forth
+bindsym --to-code $mod+p workspace prev
+bindsym --to-code $mod+n workspace next
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
+bindsym --to-code $mod+1 workspace 1
+bindsym --to-code $mod+2 workspace 2
+bindsym --to-code $mod+3 workspace 3
+bindsym --to-code $mod+4 workspace 4
+bindsym --to-code $mod+5 workspace 5
+bindsym --to-code $mod+6 workspace 6
+bindsym --to-code $mod+7 workspace 7
+bindsym --to-code $mod+8 workspace 8
+bindsym --to-code $mod+9 workspace 9
+
+bindsym $mod+shift+n exec "swaymsg --type get_workspaces | jq '.[] | select(.focused == true).num+1' 2> /dev/null | xargs swaymsg move container to workspace && swaymsg --type get_workspaces | jq '.[] | select(.focused == true).num+1' 2> /dev/null | xargs swaymsg workspace"
+bindsym $mod+shift+p exec "swaymsg --type get_workspaces | jq '.[] | select(.focused == true) | if .num == 1 then 9 else .num-1 end' 2> /dev/null | xargs swaymsg move container to workspace && swaymsg --type get_workspaces | jq '.[] | select(.focused == true) | if .num == 1 then 9 else .num-1 end' | xargs swaymsg workspace"
+bindsym $mod+Shift+bracketleft exec "swaymsg --type get_workspaces | jq '.[-1].num+1' | xargs swaymsg move container to workspace && swaymsg --type get_workspaces | jq '.[-1].num' | xargs swaymsg workspace"
+bindsym --to-code $mod+shift+1 move container to workspace 1; workspace 1
+bindsym --to-code $mod+shift+2 move container to workspace 2; workspace 2
+bindsym --to-code $mod+shift+3 move container to workspace 3; workspace 3
+bindsym --to-code $mod+shift+4 move container to workspace 4; workspace 4
+bindsym --to-code $mod+shift+5 move container to workspace 5; workspace 5
+bindsym --to-code $mod+shift+6 move container to workspace 6; workspace 6
+bindsym --to-code $mod+shift+7 move container to workspace 7; workspace 7
+bindsym --to-code $mod+shift+8 move container to workspace 8; workspace 8
+bindsym --to-code $mod+shift+9 move container to workspace 9; workspace 9
+bindsym --to-code $mod+shift+0 move container to workspace 10; workspace 10

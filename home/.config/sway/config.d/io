@@ -1,0 +1,43 @@
+# List inputs/outputs:
+# swaymsg -t get_inputs
+# swaymsg -t get_outpus
+
+# Useful man pages:
+# man 5 sway-input
+# man xkeyboard-config
+
+# xkb_options:
+# switch with win+space - grp:win_space_toggle
+# switch with alt+shift - grp:alt_shift_toggle
+# caps is escape, shift+caps is caps - caps:escape_shifted_capslock
+# caps is escape, escape is caps - caps:swapescape
+
+input "2:7:SynPS/2_Synaptics_TouchPad" {
+    accel_profile adaptive
+	pointer_accel 0.54
+	tap enabled
+	natural_scroll enabled
+}
+
+input "1133:45077:Logitech_M720_Triathlon_Multi-Device_Mouse" {
+    accel_profile adaptive
+	pointer_accel 1
+}
+
+input "2:10:TPPS/2_IBM_TrackPoint" {
+    accel_profile adaptive
+	pointer_accel 1
+}
+
+input "1452:591:Keychron_K2" {
+	xkb_layout us,sk(qwerty)
+	xkb_options grp:alt_shift_toggle,caps:escape_shifted_capslock
+}
+
+input "1:1:AT_Translated_Set_2_keyboard" {
+	xkb_layout us,sk(qwerty)
+	xkb_options grp:alt_shift_toggle,caps:escape_shifted_capslock
+}
+
+# Hide cursors after inactivity (ms)
+seat * hide_cursor 15000

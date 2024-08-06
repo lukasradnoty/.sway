@@ -1,0 +1,64 @@
+# "panel" means the swaybar here. From swayfx README:
+#  > The current layer namespaces can be shown with `swaymsg -r -t get_outputs | jq '.[0].layer_shell_surfaces | .[] | .namespace'`
+layer_effects "panel" corner_radius $radius
+
+# Toggle status bar visibility
+bindsym $mod+z bar mode toggle
+bindgesture swipe:down bar mode toggleconfig
+
+# `bar` can directly contain config for swaybar or run an
+# external command with its own configuration
+bar {
+	position top
+	
+	# When the bar is invisible and `hidden_state hide` (default), the bar would show
+	# up whenever $mod would be pressed. This disables it.
+	modifier none
+
+	# The status command has to be called in a loop or have a loop inside itself,
+	# or kept alive some other way.
+	# But when the output uses the i3bar/swaybar JSON protocol format,
+	# you want to have the loop inside the script to avoid sending
+	# headers infinitely.
+	status_command i3blocks
+
+	# This is the  same as  setting `separator=false` in i3blocks config.
+	# separator_symbol ''
+
+	# Wrap scrolling workspaces
+	wrap_scroll yes
+	
+	font pango: $font_family 9
+
+	# Height of the bar, status/blocklets inherit this, set to 0 to match font size
+	height 50
+
+	# Margin (only adjacent to screen edges)
+	gaps $gutter
+
+	# This only applies to the right side of the status part
+	# so only useful if using `separator_block_width` in blocks
+	# and want padding after the last block too.
+	status_edge_padding 30
+	
+	# Vertical padding of the status line, set 0 to stretch to bar's height
+	status_padding 0
+	
+	# Min width of workspace button
+	workspace_min_width 69
+
+	colors {
+		background $bg3
+		statusline $fg0
+		# `seprator-false` in blocks is same as separator $bg here
+		# separator #333333
+
+		#                  border      background  text
+		inactive_workspace $bg0        $bg0        $fg0
+		active_workspace   $bg2        $bg2        $fg0
+		focused_workspace  $bg4        $bg4        $fg1
+		urgent_workspace   $accent1    $accent1    $fg0
+		binding_mode       $accent1    $accent1    $fg0
+		# binding_mode inherits from urgent_workspace if not set.
+	}
+}

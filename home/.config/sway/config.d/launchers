@@ -1,0 +1,15 @@
+# Terminal
+bindsym $mod+return exec $term
+
+# Combi
+bindsym $mod+space exec rofi -show combi -config ~/.config/rofi/combi.rasi
+
+# Alt tab
+bindsym alt+tab exec rofi -show window -config ~/.config/rofi/alttab.rasi
+
+# File browser
+bindsym $mod+e exec rofi -show filebrowser -config ~/.config/rofi/filebrowser.rasi
+
+# Emoji picker
+# bindsym $mod+shift+e exec 'rofi -modi emoji -show emoji -config ~/.config/rofi/emoji.rasi -emoji-mode stdout | wl-copy && notify-send --app-name="Emoji" $(wl-paste) "copied into cliboard"'
+bindsym $mod+shift+e exec rofi -show emoji -config ~/.config/rofi/emoji.rasi -emoji-mode stdout | xargs wtype

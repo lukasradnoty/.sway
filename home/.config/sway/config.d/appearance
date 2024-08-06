@@ -1,0 +1,58 @@
+font pango: $font_family 10
+
+# Gaps
+gaps inner $gutter
+smart_gaps off
+
+# Titlebar text alignment
+title_align center
+
+# Window shaddows (swayfx)
+shadows enable
+shadow_blur_radius $radius
+shadow_offset 0 $radius
+shadow_color $shaddow
+shadow_inactive_color $transparent
+
+smart_borders on
+
+# Padding around titlebar text
+titlebar_padding 20
+
+# Border around the titlebar
+titlebar_border_thickness 1
+
+# Window border: this is the border around the window up to the titlebar part, so left right and bottom.
+# You need n > 0 to be able to resize with mouse. Works with fully transparent border color though.
+# `normal n` border of n thickness and shows the title bar
+# `pixel n` border of n thickness and hides the title bar
+# `none` is no border and no title unless stacking/tabbed
+# `csd` client-side-decorations = let's the client draw decorations, i3 only
+default_border normal 1
+
+# Window corner radius (swayfx)
+corner_radius $radius
+
+# --image can be a symlink to an image. --color is set if there's nothing at --image path.
+exec_always killall swaybg
+exec_always swaybg \
+    --image ~/.local/share/backgrounds/sway/default \
+    --mode fill \
+    --color "$bg3"
+
+#                       titlebar border  titlebar background  titlebar text  indicator*    window border
+
+# A client which currently has the focus.
+client.focused          $bg4             $bg4                 $fg1           $accent0      $transparent
+
+# Window which is the focused one in the container, but does not have the focus at the moment.
+client.focused_inactive $bg_d            $bg_d              $fg0           $accent0      $transparent
+# Window which is not the focused one in the container.
+client.unfocused        $bg2             $bg2                $fg0           $accent0      $transparent
+
+# Window which has its urgency hint activated.
+client.urgent           $accent0         $accent0             $fg1           $bg1          $accent0
+
+# *indicator: this color is used for indicating placement of a new/replaced window in window management
+
+# client.placeholder and client.background are not supported in sway
