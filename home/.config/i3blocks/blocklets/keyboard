@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+keyboard() {
+	i="&#x2328;"
+
+	t="$(swaymsg --type get_inputs | \
+		jq --raw-output 'first | select(.type=="keyboard").xkb_active_layout_name')"
+
+	printf "%s %s\n" "$i" "$t"
+}
+
+# Initial
+keyboard
+
+# Watch
+swaymsg --monitor --type subscribe '[ "input" ]' | while read 
+do
+	keyboard 
+done &
+
+# Buttons
+while read BLOCK_BUTTON 
+do
+	case $BLOCK_BUTTON in
+		1) ~/.local/share/sway/controls/keyboard toggle
+	esac
+done > /dev/null

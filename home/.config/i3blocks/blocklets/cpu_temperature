@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+cpu_temperature() {
+	# TEMPERATURE
+	# /sys/class/hwmon/ symlinks to the same devices as /sys/class/thermal/
+	# More info on /sys/class/thermal/ https://www.kernel.org/doc/Documentation/thermal/sysfs-api.txt
+
+	printf "%s %s\n" "&#x1F321;" "$(cat /sys/class/thermal/thermal_zone0/temp | awk '{ print int($0/1000) "°C" }')"
+}
+
+case $BLOCK_BUTTON in
+	1) swaymsg -q exec foot htop ;;
+esac
+
+cpu_temperature

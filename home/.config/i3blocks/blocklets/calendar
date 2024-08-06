@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+calendar() {
+	f=""
+	f+="&#128467; "
+	f+="$(date '+%a %-d %b %Y')"
+
+	echo "$f"
+}
+
+calendar

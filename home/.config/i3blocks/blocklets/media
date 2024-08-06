@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+media() {
+	status="$(playerctl status)"
+	player="`playerctl metadata --format '{{lc(playerName)}}'`"
+	artist="`playerctl metadata --format '{{artist}}'`"
+	title="`playerctl metadata --format '{{title}}'`"
+
+	i=""
+	if [ $status = "Playing" ]; then
+		i+="&#x25B6;"
+	elif [ $status = "Paused" ]; then
+		i+="&#x23F8;"
+	fi
+
+	t=""
+	[ -n "$player" ] && t+="[$player]"
+	[ -n "$artist" ] && t+=" $artist"
+	[ -n "$title" ] && t+=" - $title"
+
+	# Shorten text and add ellipis
+	[ ${#t} -gt 42 ] && t=`echo $t | awk '{ print substr($0,1,42) "..." }'` 
+
+	printf "%s  %s\n" "$i" "$t"
+}
+
+# Watch for playing/paused and track change
+# (No init needed; playerctl prints change even on first run)
+#
+# The trick to combine `playerctl status` and `playerctl metadata 'xesam:title'` into
+# one command is to include {{status}} under metadata, which, unexpectedly, works
+playerctl metadata --format '{{status}} {{title}}' --follow | while read; do media; done &
+
+while read BLOCK_BUTTON; do
+	case $BLOCK_BUTTON in
+		1) ~/.local/share/sway/controls/media toggle ;;
+		2) ~/.local/share/sway/controls/media previous ;;
+		3) ~/.local/share/sway/controls/media next ;;
+	esac
+done

@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+battery() {
+    i=""
+	t=""
+    
+    # /sys/class/power_supply/[...]/status can be Charging, Discharging, Not charging or Full
+    status=`cat /sys/class/power_supply/BAT1/status`
+    capacity=`cat /sys/class/power_supply/BAT1/capacity`
+        
+    if [ "$status" == "Charging" ]; then
+        i="&#x1F50C;"
+    elif [ "$status" == "Discharging" ]; then
+        [ "$capacity" -gt 25 ] && i="&#x1F50B;" || i="&#x1FAAB;"
+    fi
+    
+    [ "$capacity" -gt 25 ] && format="%s %s%% (%s)\n" || format="%s <span background='#ff0000' foreground='#000000'>%s%% (%s)</span>\n"
+    case "$status" in Charging|Discharging) printf "$format" "$i" "$capacity" "$status" ;; esac
+}
+
+battery

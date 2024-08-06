@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+
+volume() {
+	f=""
+	f+=" $(pamixer --get-volume)%"
+
+	[ $(pamixer --get-mute) = "true" ] && f+=' (muted)'
+
+	# '  'spaces at the end to create padding at the of the status bar. Using bar's padding option
+	# creates a space that cycles through workspaces when mouse scrolls hovering above it.
+	printf "%s %s    \n" "&#x1F50A;" "$f"
+}
+
+# Init
+volume
+
+# `pactl subscribe` emits two change events if the sink is muted and you unmute it
+# and raise volume at the same time with `paxmier --unmute --increase 1'.
+# But it's not a big deal, just refreshers volume status two times in a row if it's muted.
+pactl subscribe | stdbuf -oL grep 'change' | stdbuf -oL grep 'sink' | while read
+do
+	volume
+done &
+
+while read BLOCK_BUTTON; do
+	case $BLOCK_BUTTON in
+		1) ~/.local/share/sway/controls/volume toggle ;;
+		4) ~/.local/share/sway/controls/volume up ;;
+		5) ~/.local/share/sway/controls/volume down ;;
+	esac
+done

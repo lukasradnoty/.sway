@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+updates() {
+	updates="$(/home/linuxbrew/.linuxbrew/bin/brew outdated 2>/dev/null | wc -l)"
+
+	[ -n "$updates" ] && printf "%s %i\n" "&#127866;" "$updates"
+}
+
+updates

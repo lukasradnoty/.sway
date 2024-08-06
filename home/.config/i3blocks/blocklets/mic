@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+mic() {
+	f=""
+	
+
+	f+=$(pamixer --default-source --get-volume)'%'
+
+	[ $(pamixer --default-source --get-mute) = "true" ] && f+=' (off)' || f+=' (on)'
+
+	printf "%s %s\n" "&#x1F399;" "$f"
+}
+
+# Init
+mic
+
+# `pactl subscribe` emits two change events if the source is muted and you unmute it
+# and raise volume `paxmier --default-source--unmute --increase 1'
+# But it's not a big deal, just refreshers mic volume status two times in a row if was muted.
+pactl subscribe | stdbuf -oL grep 'change' | stdbuf -oL grep 'source' | while read
+do
+	mic
+done &
+
+while read BLOCK_BUTTON
+do
+	case $BLOCK_BUTTON in
+		1) ~/.local/share/sway/controls/mic toggle ;;
+		4) ~/.local/share/sway/controls/mic up ;;
+		5) ~/.local/share/sway/controls/mic down ;;
+	esac
+done

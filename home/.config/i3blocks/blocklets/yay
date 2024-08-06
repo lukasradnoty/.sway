@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+updates() {
+	updates="$(checkupdates-with-aur --nocolor | wc -l)"
+
+	[ -n "$updates" ] && printf "%s %i\n" "&#x1F389;" $updates
+}
+
+updates

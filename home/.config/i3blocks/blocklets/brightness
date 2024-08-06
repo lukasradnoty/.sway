@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+brightness() {
+	printf "%s %.0f%s\n" "&#128262;" `light -G` "%"
+}
+
+case $BLOCK_BUTTON in
+	1) ~/.local/share/sway/controls/brightness set100 ;;
+	3) ~/.local/share/sway/controls/brightness set1 ;;
+	4) ~/.local/share/sway/controls/brightness up ;;
+	5) ~/.local/share/sway/controls/brightness down ;;
+esac
+
+brightness

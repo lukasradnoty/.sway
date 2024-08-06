@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+ram() {
+	f=""
+
+	# See man page for free for more info and how it calculates free memory
+	# to avoid confusion about value from sys monitor tools
+	# $3:used $7:available
+	f+="$(free --human --si | grep 'Mem' | awk '{ print $3 "/" $7 }')"
+
+	printf "%s %s\n" "&#x1F40F;" "$f"
+}
+
+case $BLOCK_BUTTON in
+	1) swaymsg -q exec foot htop ;;
+esac
+
+ram

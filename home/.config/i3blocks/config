@@ -1,0 +1,101 @@
+# vim:ft=dosini
+
+# This config file execution directory follows symlinks, so the working directory is:
+#  ~/.homeshick/repos/sway/home/.config/i3blocks/
+
+# https://vivien.github.io/i3blocks/#_click
+# > If the value of the block’s interval is persist, then the data
+# > is written on the command standard input, one line per click.
+# > What gets written depends on the block’s format. The raw format
+# > only gets the click button. The JSON format gets all block
+# > variables.
+
+# There is padding created through separator_block_width despite separator being turned off. If separator was set to true
+# then it would be space on the sides the separator.
+separator=false
+
+separator_block_width=13
+
+# No border, dealing with margin through separator_block_width and in sway bar config through
+# height/status_padding and status_edge_padding
+# This would be useful if you would like to have a transparent bar with
+# individual blocks having their background and padding (via border=[hex color]) of the same
+# colors as the background in the pango markup output of the blocklet, and use the border
+# as a fuax padding and margin with separator_block_width.
+#border=00ffff
+#border_top=3
+#border_right=3
+#border_bottom=3
+#border_left=3
+#min_width=50
+
+# Needed even for just proper rendering of icons.
+markup=pango
+
+# Example of formatted markup example to be used inside blocks:
+# <span background="#000000" foreground="#ff00ff">Text</span>
+
+[media]
+command=~/.config/i3blocks/blocklets/media
+interval=persist
+
+[battery]
+command=~/.config/i3blocks/blocklets/battery
+interval=1
+
+[yay]
+command=~/.config/i3blocks/blocklets/yay
+interval=3600
+
+[brew]
+command=~/.config/i3blocks/blocklets/brew
+interval=3600
+
+[clock]
+command=~/.config/i3blocks/blocklets/clock
+interval=1
+
+[calendar]
+command=~/.config/i3blocks/blocklets/calendar
+interval=3
+
+[cpu_usage]
+command=~/.config/i3blocks/blocklets/cpu_usage
+interval=3
+
+[cpu_temperature]
+command=~/.config/i3blocks/blocklets/cpu_temperature
+interval=3
+
+[ram]
+command=~/.config/i3blocks/blocklets/ram
+interval=3
+
+[storage]
+command=~/.config/i3blocks/blocklets/storage
+interval=3
+
+[wifi]
+command=~/.config/i3blocks/blocklets/wifi
+interval=3
+
+[ethernet]
+command=~/.config/i3blocks/blocklets/ethernet
+interval=3
+
+[brightness]
+command=~/.config/i3blocks/blocklets/brightness
+interval=once
+signal=2
+
+[keyboard]
+command=~/.config/i3blocks/blocklets/keyboard
+interval=persist
+
+[mic]
+command=~/.config/i3blocks/blocklets/mic
+interval=persist
+
+[volume]
+command=~/.config/i3blocks/blocklets/volume
+interval=persist

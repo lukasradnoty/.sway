@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+clock() {
+	printf "%s %s\n" "&#128345;" "$(date '+%-H:%M')"
+}
+
+clock

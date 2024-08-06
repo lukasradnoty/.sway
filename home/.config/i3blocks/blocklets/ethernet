@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+ethernet() {
+	f="  "
+
+	# Get interface names: `ip a` or `ls /sys/class/net/`
+	interface="enp0s31f6"
+
+
+	if [ "$(ip -brief addr show $interface | awk '{print $2}')" = "UP" ]; then
+		# IP
+		# gsub(/\/(.*)/,""); means substitute everything after / with nothing
+		f+=" $(ip -brief addr show $interface | awk '{ gsub(/\/(.*)/,""); print $3 }')"
+
+		echo "$f"
+	fi
+}
+
+ethernet

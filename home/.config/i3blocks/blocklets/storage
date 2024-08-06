@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+storage() {
+	# $2:total $3:used $4:available $5:%
+	printf "%s %s\n" "&#x1F4BD;" "$(df --human-readable --si / | awk '/\/.*/ { print $4 " free, used " $3 " of " $2 q}')"
+}
+
+case $BLOCK_BUTTON in
+	# 1) swaymsg -q "exec foot df --human-readable '/' --si" ;;
+	1) swaymsg -q "exec foot fish --init-command 'df --human-readable --si'" ;;
+esac
+
+storage

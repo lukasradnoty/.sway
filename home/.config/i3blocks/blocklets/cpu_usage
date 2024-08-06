@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+cpu_usage() {
+	f=""
+
+	# I really don't know what I'm doing here.
+	# The idle value should state how much time the cpu spent idle,
+	# so 100 minus idle is time spent doing things. I guess. Something like
+	# that but maybe I'm wrong.
+	# These scripts use similar approach:
+	# https://github.com/vivien/i3blocks-contrib/blob/master/cpu_usage/cpu_usage
+	# https://github.com/vivien/i3blocks-contrib/blob/master/cpu_util_detailed/cpu_util_detailed#L64
+	# mpstat 1 1 means one second interval and one report. Not specifying interval would mean
+	# report for utilization since the system started (From the manpage)
+	# --dec=0 zero decimals doesn't work with -o JSON
+	f+=" $(mpstat -u -o JSON 1 1 | jq '.sysstat.hosts[0].statistics[0]."cpu-load"[0].idle' | awk '{ print int(100-$0) }')"
+
+	printf "%s %02i%%\n" "&#x1F916;" $f
+}
+
+case $BLOCK_BUTTON in
+	1) swaymsg -q exec foot htop ;;
+esac
+
+cpu_usage

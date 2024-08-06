@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+wifi() {
+	f=""
+
+	# Get the name of the interface: `ip a` or `ls /sys/class/net/`
+	interface="wlp4s0"
+
+
+	if [ "$(ip -brief addr show $interface | awk '{print $2}')" = "UP" ]; then
+		# SSID
+		ssid="$(iw $interface info | grep 'ssid' | awk '{ print $2 }')"
+		
+		# Network speed
+		#speed="$(nmcli dev wifi | grep "^\*" | awk '{ print $6 $7 }')"
+
+		# Strength
+		# grep \* is taking the line which begins with an asterix,
+		# nmcli puts that before the active connection
+		strength="$(nmcli dev wifi | grep "^\*" | awk '{ print $8 }')"
+
+		# IP
+		# gsub(/\/(.*)/,""); means substitute everything after / with nothing
+		# f+=" $(ip -brief addr show $interface | awk '{ gsub(/\/(.*)/,""); print $3 }')"
+
+		printf "%s %s %s%%\n" "&#x1F4E1;" "$ssid" "$strength"
+	fi
+}
+
+wifi
