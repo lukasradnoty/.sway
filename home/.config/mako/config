@@ -1,0 +1,29 @@
+# Mako starts automatically <https://github.com/emersion/mako#running>
+
+font=Ubuntu, sans-serif 11
+
+# Colors support alpha.
+background-color=#dcdcdc
+text-color=#383a42
+progress-color=over #fafafa
+
+border-color=#dcdcdc
+border-radius=14
+border-size=1
+
+width=350
+height=200
+margin=30,20,0,0
+padding=10,15
+
+max-icon-size=70
+
+max-visible=6
+layer=overlay
+anchor=top-right
+format=%a\n<b>%s</b>\n%b
+default-timeout=10000
+group-by=urgency,app-name,summary
+
+[app-name="Screenshot" actionable]
+on-button-left=exec xdg-open ~/Pictures/Screenshots
