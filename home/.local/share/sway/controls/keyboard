@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+toggle() {
+	swaymsg input type:keyboard xkb_switch_layout next
+}
+
+$1

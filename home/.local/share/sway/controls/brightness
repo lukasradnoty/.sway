@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+# The user has to be part of the `video` group: `$ usermod -aG video <user>`
+# Logged in user may need to log out/log in to take effect of groups change.
+# List groups of  the current user: `$ groups`; any user: `$ groups <user>`
+
+down() {
+	light -U 1
+	# Use either printf or awk for rounding, but use the same in i3blocks blocklet for consistency
+	printf "%.0f\n" `light -G` > /tmp/wobpipe
+	pkill -SIGRTMIN+2 i3blocks
+}
+
+up() {
+	light -A 1
+	printf "%.0f\n" `light -G` > /tmp/wobpipe
+	pkill -SIGRTMIN+2 i3blocks
+}
+
+set1() {
+	light -S 1
+	echo 1 > /tmp/wobpipe
+	pkill -SIGRTMIN+2 i3blocks
+}
+
+set100() {
+	light -S 100
+	echo 100 > /tmp/wobpipe
+	pkill -SIGRTMIN+2 i3blocks
+}
+
+$1

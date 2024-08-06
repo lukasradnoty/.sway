@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+down() {
+	pamixer --default-source --decrease 1 --get-volume > /tmp/wobpipe
+}
+
+up() {
+	pamixer --default-source --increase 1 --get-volume > /tmp/wobpipe
+}
+
+toggle() {
+	cv=$(pamixer --default-source --toggle-mute --get-volume-human)
+	[ "$cv" == "muted" ] && echo 0 > /tmp/wobpipe || echo "$cv" | tr -d '%' > /tmp/wobpipe
+}
+
+$1

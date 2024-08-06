@@ -1,0 +1,44 @@
+#!/usr/bin/env sh
+
+reload() {
+	pkill -9 i3blocks
+	swaymsg reload
+}
+
+poweroff() {
+	systemctl poweroff
+}
+
+reboot() {
+	systemctl reboot
+}
+
+lock() {
+	# Avoid double-locking if this is called from an already locked state (like putting to sleep
+	# by pressing the power button while locked.)
+	[ "$(pgrep waylock)" ] && return;
+
+	# Swayidle background process that turns off screens after 5s of inactivity
+	swayidle timeout 5 "swaymsg output '*' dpms off" resume "swaymsg output '*' dpms on" &
+
+	(
+		waylock -ignore-empty-password -init-color 0x333333 -input-color 0x004400 -fail-color 0x440000
+		pkill -nx swayidle # Kill the swayidle background process after unlocking
+	) & # Put both to background to avoid blocking other potential following commands in functions like sleep(), etc.
+}
+
+sleep() {
+	# IMPORTANT: Set HandlePowerKey=ignore in /etc/systemd/logind.conf
+	~/.local/share/sway/controls/sway lock
+	~/.local/share/sway/controls/media pause
+	systemctl suspend
+}
+
+hibernate() {
+	# To turn off wake-on-lid-open, set HibernateMode=shutdown in /etc/systemd/sleep.conf
+	~/.local/share/sway/controls/sway lock
+	~/.local/share/sway/controls/media pause
+	systemctl hibernate
+}
+
+$1

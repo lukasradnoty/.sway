@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+fullscreen() {
+	filename=~/Pictures/Screenshots/`date +"%Y-%m-%d-%H-%M-%S-%N"`.png
+	grim -t png "$filename"
+	notify-send --icon "$filename" \
+		--action "default=open" \
+		--urgency low \
+		--app-name "Screenshot" -- "Screenshot saved to" \
+		"$filename"
+}
+
+area() {
+	filename=~/Pictures/Screenshots/`date +"%Y-%m-%d-%H-%M-%S-%N"`.png
+	# -g set the x y region to capture from stdin
+	slurp | grim -g - -t png "$filename"
+	wl-copy < "$filename"
+	notify-send --icon "$filename" \
+		--action "default=open" \
+		--urgency low \
+		--app-name "Screenshot" -- "Screen clip copied to clipboard and saved" \
+		"$filename"
+}
+
+$1

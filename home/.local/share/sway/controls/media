@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+# >/dev/null because some players can't rewind/forward and complain.
+
+previous() {
+	playerctl previous >/dev/null
+
+}
+
+toggle() {
+	playerctl play-pause >/dev/null
+
+}
+
+next() {
+	playerctl next >/dev/null
+
+}
+
+rewind() {
+	playerctl position 5- >/dev/null
+}
+
+fastforward() {
+	playerctl position 5+ >/dev/null
+}
+
+pause() {
+	playerctl pause
+}
+
+$1

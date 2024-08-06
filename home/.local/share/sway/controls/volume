@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+down() {
+	v="$(pamixer --decrease 1 --get-volume)"
+	[ "$v" == 0 ] && pamixer --mute
+	echo $v > /tmp/wobpipe
+}
+
+up() {
+	v="$(pamixer --unmute --increase 1 --get-volume)"
+	[ "$v" != 0 ] && pamixer --unmute
+	echo $v > /tmp/wobpipe
+}
+
+toggle() {
+	v="$(pamixer --toggle-mute --get-volume-human)"
+	# --get-volume would give a number if the output is muted,
+	# but -human returns the word "muted". This way we can show
+	# empty wob bar indicating muted volume.
+	if [ "$v" == "muted" ]; then
+		echo 0 > /tmp/wobpipe
+	else
+		echo $v | tr -d '%' > /tmp/wobpipe
+	fi
+}
+
+$1
