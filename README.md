@@ -24,15 +24,15 @@ and reload sway.
 
 There's no single main/master branch. All colorscheme branches are equal to a main branch and the only differences in code should be appearance settings.
 
-Because the colorscheme branches all act as a "main" branch, every change has to be through a merge, no commit to main as there isn't one.
-
-Every non-appearance change then has to be merged to all colorschcme branches.
+Because the colorscheme branches all act as a "main" branch, every change has to be through a cherry-pick, no commit to main as there isn't one.
 
 ```
 git checkout light
-git merge somechangebranch
+git cherry-pick somechangebranch
+git push
 git checkout dark
-git merge somechangebranch
+git cherry-pick somechangebranch
+git push
 ```
 
 ## Dependencies
